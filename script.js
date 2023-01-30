@@ -9,22 +9,62 @@ function convertToRoman(num) {
       6:['I', 1]
     };
 
-  //your code here
-let result = '';
-
-for (let i = 0; i < Object.keys(obj).length; i++) {
-let currentNum = num;
-while (currentNum >= obj[i][1]) {
-result += obj[i][0];
-currentNum -= obj[i][1];
-}
-num = currentNum;
-}
-
-// handle special cases for 4 and 9
-result = result.replace("IIII", "IV").replace("VIIII", "IX").replace("XXXX", "XL").replace("LXXXX", "XC").replace("CCCC", "CD").replace("DCCCC", "CM");
-
-return result;
+	 let result = "";
+   while(num){
+      if(num>=1000){
+         result += "M";
+         num -= 1000;
+      }else if(num>=500){
+         if(num>=900){
+            result += "CM";
+            num -= 900;
+         }else{
+            result += "D";
+            num -= 500;
+         }
+         }else if(num>=100){
+            if(num>=400){
+               result += "CD";
+               num -= 400;
+            }else{
+               result += "C";
+               num -= 100;
+            }
+         }else if(num>=50){
+            if(num>=90){
+               result += "XC";
+               num -= 90;
+            }else{
+               result += "L";
+               num -= 50;
+            }
+         }else if(num>=10){
+            if(num>=40){
+               result += "XL";
+               num -= 40;
+            }else{
+               result += "X";
+               num -= 10;
+            }
+         }else if(num>=5){
+            if(num>=9){
+               result += "IX";
+               num -= 9;
+           }else{
+               result += "V";
+               num -= 5;
+            }
+         }else{
+            if(num>=4){
+               result += "IV";
+               num -= 4;
+         }else{
+            result += "I";
+            num -= 1;
+         }
+      }
+   }
+   return result;
 }
 // You can test your code by running the above function and printing it to console by pressing the run button at the top. To run it with input 36, uncomment the following line
 
